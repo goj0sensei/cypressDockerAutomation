@@ -1,0 +1,17 @@
+{
+  "name": "cypressproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "echo This is PRE-TEST script",
+    "posttest": "echo This is POST-TEST script",
+    "test": "echo This is a TEST"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^10.7.0"
+  }
+}

@@ -1,0 +1,47 @@
+version: "3"
+services:
+
+  cypress:
+    image: cypress/included:9.7.0
+    ports:
+      - "4444:4444"
+    environment:
+        GRID_MAX_SESSION: 16
+        GRID_BROWSER_TIMEOUT: 300
+        GRID_TIMEOUT: 300
+    command: npx cypress run
+    # mount the host directory e2e/cypress and the file e2e/cypress.config.js as
+    # volumes within the container
+    # this means that:
+    #  1. anything that Cypress writes to these folders (e.g., screenshots,
+    #     videos) appears also on the Docker host's filesystem
+    #  2. any change that the developer applies to Cypress files on the host
+    #     machine immediately takes effect within the e2e container (no docker
+    #     rebuild required).
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
+    
+
+
+  # chrome:
+  #   image: selenium/node-chrome
+  #   depends_on:
+  #     - selenium-hub
+  #   environment:
+  #     HUB_PORT_4444_TCP_ADDR: selenium-hub
+  #     HUB_PORT_4444_TCP_PORT: 4444
+  #     NODE_MAX_SESSION: 2
+  #     NODE_MAX_INSTANCES: 2
+  #   # volumes:
+  #   #   - /dev/shm:/dev/shm
+
+  # firefox:
+  #   image: selenium/node-firefox
+  #   depends_on:
+  #     - selenium-hub
+  #   environment:
+  #     HUB_PORT_4444_TCP_ADDR: selenium-hub
+  #     HUB_PORT_4444_TCP_PORT: 4444
+  #     NODE_MAX_SESSION: 4
+  #     NODE_MAX_INSTANCES: 4

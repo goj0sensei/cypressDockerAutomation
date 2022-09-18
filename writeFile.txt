@@ -1,0 +1,2 @@
+Created this file using writeFile command
+To avoid replacing text use flag with a+
